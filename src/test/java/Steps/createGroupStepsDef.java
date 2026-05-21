@@ -55,42 +55,50 @@ public class createGroupStepsDef extends Base {
 
     @And("the admin clicks on Admin Panel")
     public void the_admin_clicks_on_admin_panel() {
+        adminPanelPage.clickOnAdminPanel();
 
     }
 
 
     @And("the admin clicks on Groups in the sidebar")
     public void the_admin_clicks_on_groups_in_the_sidebar() {
+        adminPanelPage.clickGroupsOnSidebar();
 
     }
 
 
     @And("the admin clicks on Create New Group button")
     public void the_admin_clicks_on_create_new_group_button() {
+        adminPanelPage.clickOnCreateNewGroupButton();
     }
 
     @And("the admin enters group name (.*)$")
     public void the_admin_enters_group_name(String groupName) {
+        adminPanelPage.enterGroupName(groupName);
 
     }
 
     @And("the admin enters group description (.*)$")
     public void the_admin_enters_group_description(String description) {
+        adminPanelPage.enterGroupDescription(description);
 
     }
 
     @And("the admin enters group year (.*)$")
     public void the_admin_enters_group_year(String year) {
+        adminPanelPage.enterGroupYear(year);
 
     }
 
     @And("the admin enters max capacity (.*)$")
     public void the_admin_enters_max_capacity(String maxCapacity) {
+        adminPanelPage.enterGroupMaxCapacity(maxCapacity);
 
     }
 
     @And("the admin enters start date (.*)$")
     public void the_admin_enters_start_date(String startDate) {
+       // adminPanelPage.selectStartDate(startDate);
 
     }
 
@@ -121,10 +129,12 @@ public class createGroupStepsDef extends Base {
 
     }
 
-    @Then("the group Cucumber Group with year {int} should be visible in the group dropdown")
-    public void the_group_cucumber_group_with_year_should_be_visible_in_the_group_dropdown(Integer int1) {
 
+
+    @Then("the group Cucumber First Group {int} with year {int} should be visible in the group dropdown")
+    public void the_group_cucumber_first_group_with_year_should_be_visible_in_the_group_dropdown(Integer int1, Integer int2) {
     }
+
 
 
 

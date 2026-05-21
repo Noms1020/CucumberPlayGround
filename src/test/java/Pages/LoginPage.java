@@ -19,13 +19,8 @@ public class LoginPage {
 
     WebDriver driver;
     WebDriverWait wait;
-
-    @Before
-    public void openBrowser() {
-        driver = new ChromeDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-
-
+    public void clickLoginButton() {
+        loginButton_xpath.click();
     }
 
     @FindBy(xpath = "//span[text()='Login']")
@@ -43,35 +38,28 @@ public class LoginPage {
     WebElement login_submitId;
 
 
-
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
 
 
-    public void clickLoginButton() {
-        loginButton_xpath.click();
-    }
+
+
     public void verifyLoginPageIsDisplayed() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("loginHeading_xpath")));
         loginHeading_xpath.isDisplayed();
     }
 
-    public void enterLoginAdminEmail(String email){
+    public void enterLoginAdminEmail(String email) {
         login_emailId.sendKeys(email);
     }
-    public void enterLoginAdminPassword(String password){
+
+    public void enterLoginAdminPassword(String password) {
         login_passwordId.sendKeys(password);
     }
 
-    public void clickSubmitButton(){
+    public void clickSubmitButton() {
         login_submitId.click();
-    }
-
-
-    @After
-    public void closeBrowser() {
-        driver.quit();
     }
 
 
