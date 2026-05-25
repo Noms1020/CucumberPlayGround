@@ -24,5 +24,5 @@ Feature: Create Group and Validate in Sign-up
 
     Examples:
       | email          | password   | groupName                 | description                          | year | maxCapacity | startDate  | endDate    |
-      | noms@gmail.com | Password@2 | Cucumber First Group 2026 | Cucumber assessment first group 2026 | 2026 | 100         | 2026/05/01 | 2026/12/31 |
+      | noms@gmail.com | Password@2 | Cucumber First Group 2026 | Cucumber assessment first group 2026 | 2026 | 100         | 0020260525| 0020270525 |
 

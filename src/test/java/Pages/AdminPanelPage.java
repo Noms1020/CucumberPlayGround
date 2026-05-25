@@ -40,7 +40,6 @@ public class AdminPanelPage {
     WebElement groupDescription_xpath;
 
     @FindBy(xpath = "//input[@name='year']")
-    //@FindBy(xpath = "input[value='2026']")
     WebElement groupYear_xpath;
 
     @FindBy(xpath = "//input[@placeholder='Unlimited']")
@@ -90,34 +89,23 @@ public class AdminPanelPage {
         groupCapacity_xpath.sendKeys(maxCapacity);
     }
 
-   //public void selectStartDateViaIcon(String startDate) {
+   public void selectStartDate(String startDate)  {
 
-       // startdate_xpath.click();
-    //}
-
-    public void selectStartDate(String date) throws InterruptedException {
-        Actions actions = new Actions(driver);
-
-        // Split date "2026-05-01" into parts
-        String[] parts = date.split("/"); // parts[0]=2026, parts[1]=05, parts[2]=01
-
-        // Click to focus the field
-        actions.moveToElement(startdate_xpath).click().perform();
-        Thread.sleep(300);
-
-        startdate_xpath.sendKeys(parts[0] + "/" + parts[1] + "/" + parts[2]);
-
-        // Type YEAR then TAB to move to next segment
-       // startDateInput.sendKeys(parts[0]); // 2026
-       // startDateInput.sendKeys(Keys.TAB); // move to month segment
-
-        // Type MONTH then TAB to move to next segment
-        //startDateInput.sendKeys(parts[1]); // 05
-        //startDateInput.sendKeys(Keys.TAB); // move to day segment
-
-        // Type DAY then TAB to confirm
-        //startDateInput.sendKeys(parts[2]); // 01
-        //startDateInput.sendKeys(Keys.TAB); // confirm & exit
+       startdate_xpath.click();
+       startdate_xpath.clear();
+       startdate_xpath.sendKeys(startDate);
     }
+
+    public void enterEnd_date(String endDate){
+        end_date_xpath.click();
+        end_date_xpath.clear();
+        end_date_xpath.sendKeys(endDate);
+    }
+
+    public void clickOnCreateGroupButton(){
+        new WebDriverWait(driver,Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(create_groupButton_xpath));
+        create_groupButton_xpath.click();
+    }
+
 
 }

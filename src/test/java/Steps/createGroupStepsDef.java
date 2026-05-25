@@ -97,8 +97,7 @@ public class createGroupStepsDef extends Base {
     }
 
     @And("the admin enters start date (.*)$")
-    public void the_admin_enters_start_date(String startDate) throws InterruptedException {
-        //adminPanelPage.selectStartDateViaIcon(startDate);
+    public void the_admin_enters_start_date(String startDate) {
        adminPanelPage.selectStartDate(startDate);
 
 
@@ -106,11 +105,13 @@ public class createGroupStepsDef extends Base {
 
     @And("the admin enters end date (.*)$")
     public void the_admin_enters_end_date(String endDate) {
+        adminPanelPage.enterEnd_date(endDate);
 
     }
 
     @And("the admin clicks the Create Group button")
     public void the_admin_clicks_the_create_group_button() {
+        adminPanelPage.clickOnCreateGroupButton();
 
     }
 
