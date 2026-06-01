@@ -1,9 +1,6 @@
 package Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -42,7 +39,8 @@ public class AdminPanelPage {
     @FindBy(xpath = "//input[@name='year']")
     WebElement groupYear_xpath;
 
-    @FindBy(xpath = "//input[@placeholder='Unlimited']")
+    //@FindBy(xpath = "//input[@placeholder='Unlimited']")
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[4]/div[1]/form[1]/div[3]/div[2]/input[1]")
     WebElement groupCapacity_xpath;
     @FindBy(xpath = "//input[@name='startDate']")
     WebElement startdate_xpath;
@@ -50,6 +48,10 @@ public class AdminPanelPage {
     WebElement end_date_xpath;
     @FindBy(xpath = " //button[@type='submit']")
     WebElement create_groupButton_xpath;
+    @FindBy(xpath = "//button[contains(text(),'← Back to Website')]")
+    WebElement backToWebsite_xpath;
+    @FindBy(xpath = "//button[@class='nav-dropdown-item']//span[contains(text(),'Logout')]")
+    WebElement logout_xpath;
 
 
 
@@ -86,6 +88,8 @@ public class AdminPanelPage {
     }
 
     public void enterGroupMaxCapacity(String maxCapacity){
+        groupCapacity_xpath.click();
+        groupCapacity_xpath.clear();
         groupCapacity_xpath.sendKeys(maxCapacity);
     }
 
@@ -105,6 +109,25 @@ public class AdminPanelPage {
     public void clickOnCreateGroupButton(){
         new WebDriverWait(driver,Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(create_groupButton_xpath));
         create_groupButton_xpath.click();
+    }
+
+    public void click_on_back_to_website(){
+        backToWebsite_xpath.click();
+    }
+
+    public void clickOnLogoutButton(){
+        new WebDriverWait(driver,Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(logout_xpath));
+        logout_xpath .click();
+    }
+
+    public void clickCancelPopup() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        wait.until(ExpectedConditions.alertIsPresent());
+
+        Alert alert = driver.switchTo().alert();
+
+        alert.accept();
     }
 
 

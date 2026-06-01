@@ -118,11 +118,15 @@ public class createGroupStepsDef extends Base {
 
     @Then("the admin clicks on the user menu to logout")
     public void the_admin_clicks_on_the_user_menu_to_logout() {
+        adminPanelPage.click_on_back_to_website();
+        adminPanelPage.clickUserMenu();
 
     }
 
     @And("the admin clicks Logout")
     public void the_admin_clicks_logout() {
+        adminPanelPage.clickOnLogoutButton();
+        adminPanelPage.clickCancelPopup();
 
     }
 
