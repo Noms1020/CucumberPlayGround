@@ -1,9 +1,6 @@
 package Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -40,10 +37,10 @@ public class AdminPanelPage {
     WebElement groupDescription_xpath;
 
     @FindBy(xpath = "//input[@name='year']")
-    //@FindBy(xpath = "input[value='2026']")
     WebElement groupYear_xpath;
 
-    @FindBy(xpath = "//input[@placeholder='Unlimited']")
+    //@FindBy(xpath = "//input[@placeholder='Unlimited']")
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[4]/div[1]/form[1]/div[3]/div[2]/input[1]")
     WebElement groupCapacity_xpath;
     @FindBy(xpath = "//input[@name='startDate']")
     WebElement startdate_xpath;
@@ -51,6 +48,10 @@ public class AdminPanelPage {
     WebElement end_date_xpath;
     @FindBy(xpath = " //button[@type='submit']")
     WebElement create_groupButton_xpath;
+    @FindBy(xpath = "//button[contains(text(),'← Back to Website')]")
+    WebElement backToWebsite_xpath;
+    @FindBy(xpath = "//button[@class='nav-dropdown-item']//span[contains(text(),'Logout')]")
+    WebElement logout_xpath;
 
 
 
@@ -87,37 +88,47 @@ public class AdminPanelPage {
     }
 
     public void enterGroupMaxCapacity(String maxCapacity){
+        groupCapacity_xpath.click();
+        groupCapacity_xpath.clear();
         groupCapacity_xpath.sendKeys(maxCapacity);
     }
 
-   //public void selectStartDateViaIcon(String startDate) {
+   public void selectStartDate(String startDate)  {
 
-       // startdate_xpath.click();
-    //}
-
-    public void selectStartDate(String date) throws InterruptedException {
-        Actions actions = new Actions(driver);
-
-        // Split date "2026-05-01" into parts
-        String[] parts = date.split("/"); // parts[0]=2026, parts[1]=05, parts[2]=01
-
-        // Click to focus the field
-        actions.moveToElement(startdate_xpath).click().perform();
-        Thread.sleep(300);
-
-        startdate_xpath.sendKeys(parts[0] + "/" + parts[1] + "/" + parts[2]);
-
-        // Type YEAR then TAB to move to next segment
-       // startDateInput.sendKeys(parts[0]); // 2026
-       // startDateInput.sendKeys(Keys.TAB); // move to month segment
-
-        // Type MONTH then TAB to move to next segment
-        //startDateInput.sendKeys(parts[1]); // 05
-        //startDateInput.sendKeys(Keys.TAB); // move to day segment
-
-        // Type DAY then TAB to confirm
-        //startDateInput.sendKeys(parts[2]); // 01
-        //startDateInput.sendKeys(Keys.TAB); // confirm & exit
+       startdate_xpath.click();
+       startdate_xpath.clear();
+       startdate_xpath.sendKeys(startDate);
     }
+
+    public void enterEnd_date(String endDate){
+        end_date_xpath.click();
+        end_date_xpath.clear();
+        end_date_xpath.sendKeys(endDate);
+    }
+
+    public void clickOnCreateGroupButton(){
+        new WebDriverWait(driver,Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(create_groupButton_xpath));
+        create_groupButton_xpath.click();
+    }
+
+    public void click_on_back_to_website(){
+        backToWebsite_xpath.click();
+    }
+
+    public void clickOnLogoutButton(){
+        new WebDriverWait(driver,Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(logout_xpath));
+        logout_xpath .click();
+    }
+
+    public void clickCancelPopup() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        wait.until(ExpectedConditions.alertIsPresent());
+
+        Alert alert = driver.switchTo().alert();
+
+        alert.accept();
+    }
+
 
 }

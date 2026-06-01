@@ -23,6 +23,6 @@ Feature: Create Group and Validate in Sign-up
     Then the group <groupName> with year <year> should be visible in the group dropdown
 
     Examples:
-      | email          | password   | groupName                 | description                          | year | maxCapacity | startDate  | endDate    |
-      | noms@gmail.com | Password@2 | Cucumber First Group 2026 | Cucumber assessment first group 2026 | 2026 | 100         | 2026/05/01 | 2026/12/31 |
+      | email          | password   | groupName               | description               | year | maxCapacity | startDate | endDate  |
+      | noms@gmail.com | Password@2 | Cucumber First Group 26 | Cucumber first group 2026 | 2026 | 2000        | 20260525  | 20270525 |
 
